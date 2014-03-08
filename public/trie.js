@@ -16,6 +16,25 @@ Trie.prototype.learn = function(word, index){
   // A word does not necessarily end at a leaf.
   // You must mark nodes which are the ends of words,
   // so that the words can be reconstructed later.
+  var letter = word[index];
+  if (this.characters[letter] === undefined){
+    this.characters[letter] = letter;
+      if (index < word.length){
+        node = new Trie();
+        newIndex = index + 1;
+        node.learn(word, newIndex);
+        console.log(node.characters);
+      }
+      else { return word; }
+  }
+  else {
+    console.log("what up?");
+    // if (this.node.characters.letter === letter){
+    //   child = this.node;
+    // }
+    // newIndex = index + 1;
+    // node.learn(word, newIndex);
+  }
 };
 
 Trie.prototype.getWords = function(words, currentWord){
