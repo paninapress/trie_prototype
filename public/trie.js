@@ -17,23 +17,19 @@ Trie.prototype.learn = function(word, index){
   // You must mark nodes which are the ends of words,
   // so that the words can be reconstructed later.
   var letter = word[index];
-  if (this.characters[letter] === undefined){
-    this.characters[letter] = letter;
+  if (this.characters[letter] === undefined || this.characters[letter] === null){
       if (index < word.length){
-        node = new Trie();
+        this.characters[letter] = new Trie();
         newIndex = index + 1;
-        node.learn(word, newIndex);
-        console.log(node.characters);
+        this.characters[letter].learn(word, newIndex);
       }
-      else { return word; }
+      else { 
+        this.characters[letter] = null;
+        console.log(word); }
   }
   else {
-    console.log("what up?");
-    // if (this.node.characters.letter === letter){
-    //   child = this.node;
-    // }
-    // newIndex = index + 1;
-    // node.learn(word, newIndex);
+    newIndex = index + 1;
+    this.characters[letter].learn(word, newIndex);
   }
 };
 
